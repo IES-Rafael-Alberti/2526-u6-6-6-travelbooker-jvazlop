@@ -1,4 +1,4 @@
-package org.practicatrim2
+package presentacion
 
 fun main() {
     println("Hello World!")
