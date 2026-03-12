@@ -3,7 +3,7 @@ package dominio
 /**
  * Representa una reserva de hotel.
  * Hereda de la clase abstracta Reserva y añade
- * información específica como la ubicación y el número de noches.
+ * información como la ubicación y el número de noches.
  */
 class ReservaHotel private constructor(
     descripcion: String,
