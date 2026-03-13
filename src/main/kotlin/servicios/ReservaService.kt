@@ -14,14 +14,24 @@ class ReservaService(
 ) {
 
     /**
-     * Crea una reserva de vuelo y la guarda en el repositorio
+     * Crea una reserva de vuelo y la guarda en el repositorio.
+     * Valida que los campos no sean nulos ni vacíos antes de crear la instancia.
      */
     fun crearReservaVuelo(
-        descripcion: String,
-        origen: String,
-        destino: String,
-        horaVuelo: String
+        descripcion: String?,
+        origen: String?,
+        destino: String?,
+        horaVuelo: String?
     ) {
+        // Validación temprana
+        if (descripcion.isNullOrBlank() || origen.isNullOrBlank() ||
+            destino.isNullOrBlank() || horaVuelo.isNullOrBlank()
+        ) {
+            println("❌ Datos inválidos: no se puede crear la reserva de vuelo")
+            return
+        }
+
+        // Ya sabemos que no son null, podemos pasar directamente
         val reserva = ReservaVuelo.creaInstancia(
             descripcion,
             origen,
@@ -33,13 +43,22 @@ class ReservaService(
     }
 
     /**
-     * Crea una reserva de hotel y la guarda en el repositorio
+     * Crea una reserva de hotel y la guarda en el repositorio.
+     * Valida que los campos no sean nulos ni vacíos antes de crear la instancia.
      */
     fun crearReservaHotel(
-        descripcion: String,
-        ubicacion: String,
-        numeroNoches: Int
+        descripcion: String?,
+        ubicacion: String?,
+        numeroNoches: Int?
     ) {
+        // Validación temprana
+        if (descripcion.isNullOrBlank() || ubicacion.isNullOrBlank() ||
+            numeroNoches == null || numeroNoches <= 0
+        ) {
+            println("❌ Datos inválidos: no se puede crear la reserva de hotel")
+            return
+        }
+
         val reserva = ReservaHotel.creaInstancia(
             descripcion,
             ubicacion,
@@ -50,9 +69,13 @@ class ReservaService(
     }
 
     /**
-     * Devuelve todas las reservas registradas
+     * Devuelve todas las reservas registradas.
      */
-    fun obtenerReservas(): List<Reserva> {
-        return repository.obtenerTodas()
-    }
+    fun obtenerReservas(): List<Reserva> = repository.obtenerTodas()
+
+    /**
+     * Borra una reserva por su id.
+     * @return true si se eliminó, false si no se encontró
+     */
+    fun borrarReserva(id: Int): Boolean = repository.eliminarPorId(id)
 }

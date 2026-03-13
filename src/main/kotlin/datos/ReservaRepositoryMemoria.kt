@@ -17,4 +17,9 @@ class ReservaRepositoryMemoria : IReservaRepository<Reserva> {
     override fun obtenerTodas(): List<Reserva> {
         return reservas.toList()
     }
+
+    override fun eliminarPorId(id: Int): Boolean {
+        return reservas.removeIf { it.id == id }
+    }
+
 }
