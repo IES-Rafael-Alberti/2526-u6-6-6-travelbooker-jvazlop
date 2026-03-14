@@ -55,7 +55,7 @@ class ReservaService(
         if (descripcion.isNullOrBlank() || ubicacion.isNullOrBlank() ||
             numeroNoches == null || numeroNoches <= 0
         ) {
-            println("❌ Datos inválidos: no se puede crear la reserva de hotel")
+            println("Datos inválidos: no se puede crear la reserva de hotel")
             return
         }
 

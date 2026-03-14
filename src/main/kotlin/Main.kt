@@ -81,7 +81,7 @@ private fun crearHotel(service: ReservaService) {
     }
 
     service.crearReservaHotel(descripcion, ubicacion, noches)
-    println("Reserva de hotel creada ✔")
+    println("Reserva de hotel creada")
 }
 
 private fun listarReservas(service: ReservaService) {
