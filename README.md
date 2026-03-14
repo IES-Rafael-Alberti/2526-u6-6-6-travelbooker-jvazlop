@@ -139,21 +139,67 @@ Este conjunto de preguntas está diseñado para ayudarte a reflexionar sobre có
 #### **Criterio global 1: Instancia objetos y hacer uso de ellos**
 - **(2.a, 2.b, 2.c, 2.d, 2.f, 2.h, 4.e, 4.f)**: Describe cómo has instanciado y utilizado objetos en tu proyecto. ¿Cómo has aplicado los constructores y pasado parámetros a los métodos? Proporciona ejemplos específicos de tu código.
 
+He instanciado objetos en el main, creando el repositorio y el servicio mediante sus constructores.Las reservas se crean usando métodos de clase (creaInstancia) porque sus constructores son privados, pasando los datos como parámetros
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/Main.kt#L8-L9
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/servicios/ReservaService.kt#L35-L43
+
 #### **Criterio global 2: Crear y llamar métodos estáticos**
 - **(4.h)**: ¿Has definido algún método/propiedad estático en tu proyecto? ¿Cuál era el objetivo y por qué consideraste que debía ser estático en lugar de un método/propiedad de instancia?
 - **(2.e)**: ¿En qué parte del código se llama a un método estático o se utiliza la propiedad estática?
 
+Sí. Se han definido métodos estáticos mediante companion object, como creaInstancia en ReservaVuelo y ReservaHotel.
+Su objetivo es crear objetos validando los datos y evitar la instanciación directa, ya que los constructores son privados.
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/servicios/ReservaService.kt#L62-L68
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/servicios/ReservaService.kt#L34-L42
+
 #### **Criterio global 3: Uso de entornos**
 - **(2.i)**: ¿Cómo utilizaste el IDE para el desarrollo de tu proyecto? Describe el proceso de creación, compilación, y prueba de tu programa.
+
+Se utilizó IntelliJ IDEA para crear el proyecto, programar, compilar y ejecutar la aplicación, aprovechando sus herramientas de depuración y detección de errores.
 
 #### **Criterio global 4: Definir clases y su contenido**
 - **(4.a, 4.b, 4.c, 4.d, 4.g)**: Explica sobre un ejemplo de tu código, cómo definiste las clases en tu proyecto, es decir como identificaste las de propiedades, métodos y constructores y modificadores del control de acceso a métodos y propiedades, para representar al objeto del mundo real. ¿Cómo contribuyen estas clases a la solución del problema que tu aplicación aborda?
 
+Las clases representan tipos de reservas con sus propiedades y métodos, usando herencia y constructores privados para controlar la creación de objetos. Esto permite modelar y gestionar correctamente las reservas del sistema.
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/dominio/ReservaVuelo.kt#L6-L12
+
+
 #### **Criterio global 5: Herencia y uso de clases abstractas e interfaces**
 - **(4.g, 7.a, 7.b, 7.c, 7.i, 7.j)**: Describe sobre tu código cómo has implementado la herencia y/o utilizado interfaces en tu proyecto. ¿Por qué elegiste este enfoque y cómo beneficia a la estructura de tu aplicación? ¿De qué manera has utilizado los principios SOLID para mejorar el diseño de tu proyecto? Mostrando tu código, contesta qué principios has utilizado y qué beneficio has obtenido.
 
+Se utilizó herencia con la clase abstracta Reserva y sus subclases, e interfaces para el repositorio, aplicando principios SOLID como responsabilidad única y desacoplamiento, lo que mejora la flexibilidad y mantenimiento del sistema.
+
+S:
+Cada clase tiene una única función (dominio, repositorio, servicio, presentación).
+
+O:
+Se pueden añadir nuevos tipos de reserva sin modificar las existentes.
+
+L:
+ReservaVuelo y ReservaHotel pueden usarse donde se espere Reserva.
+
+D:
+ReservaService depende de la interfaz IReservaRepository, no de una implementación concreta.
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/dominio/Reserva.kt#L10-L22
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/datos/IReservaRepository.kt#L6-L12
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/datos/ReservaRepositoryMemoria.kt#L9-L12
+
 #### **Criterio global 6: Diseño de jerarquía de clases**
 - **(7.d, 7.e, 7.f, 7.g)**: Presenta la jerarquía de clases que diseñaste. ¿Cómo probaste y depuraste esta jerarquía para asegurar su correcto funcionamiento? ¿Qué tipo de herencia has utilizado: Especificación, Especialización, Extensión, Construcción?
+
+Se diseñó una jerarquía con una superclase abstracta Reserva, que define los elementos comunes a todas las reservas, y dos subclases concretas: ReservaVuelo y ReservaHotel, que añaden información específica.
+
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/dominio/Reserva.kt#L10-L38
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/dominio/ReservaHotel.kt#L8-L20
+https://github.com/IES-Rafael-Alberti/2526-u6-6-6-travelbooker-jvazlop/blob/f2175715c30bc94546fd67ce3224383ffd440d13/src/main/kotlin/dominio/ReservaVuelo.kt#L6-L19
 
 #### **Criterio global 7: Librerías de clases**
 - **(2.g, 4.i)**: Describe cualquier librería externa que hayas incorporado en tu proyecto. Explica cómo y por qué las elegiste, y cómo las incorporaste en tu proyecto. ¿Cómo extendió la funcionalidad de tu aplicación? Proporciona ejemplos específicos de su uso en tu proyecto.
